@@ -4,9 +4,7 @@ module.exports = gql`
 
  type Conversation {
      id: Int!
-     title: String!
-     content: String!
-     author: User!
+     participants: [User!]
      messages: [Message!]
      createdAt: String
  }
@@ -17,14 +15,13 @@ extend type Query {
 }
 
  extend type Mutation {
-     createConversation(title: String!, content: String!): CreateConversationResponse
+     createConversation(usersId:[Int!]!): CreateConversationResponse
  }
 
  type CreateConversationResponse {
     id: Int!
-    title: String!
-    content: String!
     createdAt: String!
+    participants: [User!]
  }
 
 `;

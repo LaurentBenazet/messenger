@@ -10,6 +10,11 @@ module.exports = gql`
      conversations: [Conversation!]
  }
 
+extend type Query {
+    getAllUsers: [User!]
+    getSingleUser(userId: Int!): User
+}
+
  extend type Mutation {
      register(input: RegisterInput!): RegisterResponse
      login(input: LoginInput!): LoginResponse

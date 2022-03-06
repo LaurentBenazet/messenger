@@ -12,5 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     Message.belongsTo(models.User, { foreignKey: 'userId', as: 'author' });
     Message.belongsTo(models.Conversation, { foreignKey: 'conversationId', as: 'conversation' });
   };
+  sequelize.sync();
+
   return Message;
 };

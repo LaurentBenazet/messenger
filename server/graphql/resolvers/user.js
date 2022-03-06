@@ -7,7 +7,6 @@ const { User } = require('../../database/models');
 module.exports = {
     Mutation: {
         async register(root, args, context) {
-            console.log("register")
             const { name, email, password } = args.input;
             return User.create({ name, email, password });
         },
@@ -20,6 +19,15 @@ module.exports = {
                 return { ...user.toJSON(), token };
             }
             throw new AuthenticationError('Invalid credentials');
+        },
+    },
+
+    Query: {
+        async getAllUsers(root, args, context) {
+            return User.findAll();
+        },
+        async getSingleUser(_, { userId }, context) {
+            return User.findByPk(userId);
         },
     },
 };
