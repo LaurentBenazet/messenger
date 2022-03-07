@@ -10,7 +10,6 @@ module.exports = {
             const conversation = await Conversation.findByPk(conversationId);
 
             if (conversation) {
-                console.log(userId)
                 const message = await conversation.createMessage({content, conversationId, userId});
 
                 await pubsub.publish('messageAdded', message);
