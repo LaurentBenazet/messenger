@@ -31,8 +31,11 @@ module.exports = {
 
     Subscription: {
         messageAdded: {
-            subscribe: withFilter(() => pubsub.asyncIterator('messageAdded'), (payload, variables) => {
-                return payload.dataValues.userId === variables.userId;
+            subscribe: withFilter(() => pubsub.asyncIterator('messageAdded'), async (payload, variables) => {
+                const conversation = await Conversation.findByPk(payload.dataValues.conversationId);
+                const participants = await conversation.getParticipants();
+
+                return participants.some(participant => participant.dataValues.id === variables.userId);
             }),
             resolve: (payload) => {
                 return payload;
