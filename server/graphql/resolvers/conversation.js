@@ -45,5 +45,8 @@ module.exports = {
         messages(conversation) {
             return conversation.getMessages();
         },
+        participants(conversation) {
+            return conversation.getParticipants();
+        }
     },
 };

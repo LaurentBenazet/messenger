@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const {gql} = require('apollo-server-express');
 
 module.exports = gql`
 
@@ -11,7 +11,11 @@ module.exports = gql`
  }
 
  extend type Mutation {
-     createMessage(content: String!, conversationId: Int!): CreateMessageResponse
+     createMessage(content: String!, conversationId: Int!, userId: Int!): CreateMessageResponse
+ }
+
+ extend type Subscription {
+     messageAdded(userId: Int!): Message
  }
 
  type CreateMessageResponse {

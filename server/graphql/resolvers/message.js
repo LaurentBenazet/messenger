@@ -1,18 +1,21 @@
-const { Conversation } = require('../../database/models');
+const {Conversation} = require('../../database/models');
+const {ApolloError} = require('apollo-server-express');
+const {PubSub, withFilter} = require('graphql-subscriptions');
 
-const { AuthenticationError, ApolloError } = require('apollo-server-express');
+const pubsub = new PubSub();
 
 module.exports = {
     Mutation: {
-        async createMessage(_, { content, conversationId }, { user = null }) {
-            if (!user) {
-                throw new AuthenticationError('You must login to create a message');
-            }
-
+        async createMessage(_, {content, conversationId, userId}) {
             const conversation = await Conversation.findByPk(conversationId);
 
             if (conversation) {
-                return conversation.createMessage({ content, userId: user.id });
+                console.log(userId)
+                const message = await conversation.createMessage({content, conversationId, userId});
+
+                await pubsub.publish('messageAdded', message);
+
+                return message;
             }
             throw new ApolloError('Unable to create a message');
         },
@@ -26,4 +29,15 @@ module.exports = {
             return message.getConversation();
         },
     },
+
+    Subscription: {
+        messageAdded: {
+            subscribe: withFilter(() => pubsub.asyncIterator('messageAdded'), (payload, variables) => {
+                return payload.dataValues.userId === variables.userId;
+            }),
+            resolve: (payload) => {
+                return payload;
+            },
+        }
+    }
 };

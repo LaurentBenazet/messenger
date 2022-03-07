@@ -1,12 +1,12 @@
 const express = require('express');
-const { createServer } = require('http');
-const { ApolloServer } = require('apollo-server-express');
+const {createServer} = require('http');
+const {ApolloServer} = require('apollo-server-express');
 const cors = require('cors');
 const typeDefs = require('../graphql/schemas');
 const resolvers = require('../graphql/resolvers');
 const context = require('../graphql/context');
-const app = express();
 
+const app = express();
 app.use(cors());
 
 const apolloServer = new ApolloServer({
@@ -14,8 +14,12 @@ const apolloServer = new ApolloServer({
     resolvers,
     context,
     introspection: true,
+    subscriptions: {
+        path: '/subscriptions'
+    },
     playground: {
         settings: {
+            endpoint: '/subscriptions',
             'schema.polling.enable': false,
         },
     },

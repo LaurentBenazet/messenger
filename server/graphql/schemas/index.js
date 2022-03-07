@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const {gql} = require('apollo-server-express');
 const userType = require('./user')
 const conversationType = require('./conversation')
 const messageType = require('./message')
@@ -9,6 +9,9 @@ const rootType = gql`
  }
  type Mutation {
      root: String
+ }
+ type Subscription {
+    root: String
  }
 
 `;
