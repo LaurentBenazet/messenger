@@ -1,0 +1,13 @@
+.conversation-footer {
+    height: 5vh;
+    width: 90%;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+}
+
+.conversation-text-input {
+    width: 100%;
+    background-color: rgb(243,243,245);
+}

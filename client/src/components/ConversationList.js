@@ -1,7 +1,7 @@
 import React from 'react';
-import Conversation from './Conversation';
+import ConversationPreview from './ConversationPreview';
 
-import { useQuery, gql } from '@apollo/client';
+import {gql, useQuery} from '@apollo/client';
 
 const CONVERSATIONS_QUERY = gql`
   {
@@ -15,15 +15,17 @@ const CONVERSATIONS_QUERY = gql`
   }
 `
 
-const ConversationList = () => {
-    const { data } = useQuery(CONVERSATIONS_QUERY);
+const ConversationList = (props) => {
+    const {selectConversation} = props;
+    const {data} = useQuery(CONVERSATIONS_QUERY);
 
     return (
         <div>
             {data && (
                 <>
                     {data.getAllConversations.map((conversation) => (
-                        <Conversation key={conversation.id} conversation={conversation} />
+                        <ConversationPreview key={conversation.id} conversation={conversation}
+                                             selectConversation={selectConversation}/>
                     ))}
                 </>
             )}

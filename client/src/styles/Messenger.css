@@ -1,0 +1,16 @@
+.main-container {
+    display: flex;
+}
+
+.left-column {
+    width: 25%;
+    height: 100vh;
+    overflow: auto;
+    border-right: 1px solid gray;
+}
+
+.right-column {
+    width: 75%;
+    height: 100vh;
+    overflow: auto;
+}
