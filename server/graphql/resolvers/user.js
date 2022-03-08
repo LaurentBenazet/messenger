@@ -30,4 +30,10 @@ module.exports = {
             return User.findByPk(userId);
         },
     },
+
+    User: {
+        conversations(user) {
+            return user.getConversations();
+        }
+    }
 };

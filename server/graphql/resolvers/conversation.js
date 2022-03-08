@@ -22,13 +22,7 @@ module.exports = {
 
     Query: {
         async getAllConversations(root, args, context) {
-            return Conversation.findAll({
-                include: [{
-                    model: User,
-                    as: "participants",
-                },
-                ]
-            });
+            return await context.user.getConversations();
         },
         async getSingleConversation(_, {conversationId}, context) {
             return Conversation.findByPk(conversationId, {
