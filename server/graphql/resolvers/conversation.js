@@ -22,7 +22,8 @@ module.exports = {
 
     Query: {
         async getAllConversations(root, args, context) {
-            return await context.user.getConversations();
+            // return context.user.getConversations();
+            return Conversation.findAll({});
         },
         async getSingleConversation(_, {conversationId}, context) {
             return Conversation.findByPk(conversationId, {
