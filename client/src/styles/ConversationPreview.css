@@ -1,0 +1,20 @@
+.conversation-preview {
+    margin: 10px;
+    border: 2px solid gray;
+    border-radius: 10px;
+
+    width: 90%;
+    height: fit-content;
+    display: flex;
+}
+
+.conversation-preview:hover {
+    cursor: pointer;
+    background-color: rgb(243,243,245);
+}
+
+.conversation-preview-content {
+    padding: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

@@ -1,26 +1,19 @@
 import React from 'react';
+import '../styles/ConversationPreview.css';
 
 const ConversationPreview = (props) => {
     const {conversation, selectConversation} = props;
     return (
         <div>
-            <div>
-                <div>
-                    {conversation.participants.length > 0 && (
-                        <div>
-                            <button onClick={() => selectConversation(conversation.id)}>Conversation ID
-                                : {conversation.id}</button>
-                            <span>
-                                Participants list :
-                                {conversation.participants.map((participant) => (
-                                    <span key={participant.id}>Id : {participant.id} Name
-                                        : {participant.name}</span>
-                                ))}
-                            </span>
-                        </div>
-                    )}
+            {conversation.participants.length > 0 && (
+                <div onClick={() => selectConversation(conversation.id)} className="conversation-preview">
+                    <span className="conversation-preview-content">
+                    {conversation.participants.map(function (participant) {
+                        return participant.name;
+                    }).join(',')}
+                    </span>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
