@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
 import App from './components/App';
-import {
-    ApolloProvider,
-    ApolloClient,
-    createHttpLink,
-    InMemoryCache
-} from '@apollo/client';
+import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from '@apollo/client';
+import {BrowserRouter} from 'react-router-dom';
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:8080/api'
@@ -19,8 +14,10 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <App />
-    </ApolloProvider>,
+    <BrowserRouter>
+        <ApolloProvider client={client}>
+            <App/>
+        </ApolloProvider>
+    </BrowserRouter>,
     document.getElementById('root')
 );

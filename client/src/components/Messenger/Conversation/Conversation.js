@@ -1,9 +1,9 @@
 import React from 'react';
 import {gql, useQuery} from '@apollo/client';
-import Message from './Message';
+import Message from '../Message';
 import ConversationFooter from "./ConversationFooter";
 import ConversationHeader from "./ConversationHeader";
-import '../styles/Conversation.css';
+import '../../../styles/Messenger/Conversation/Conversation.css';
 
 const CONVERSATION_QUERY = gql`
   query GetSingleConversation($conversationId: Int!) {

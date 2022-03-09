@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import ConversationList from './ConversationList';
-import Conversation from './Conversation';
-import '../styles/Messenger.css';
+import ConversationList from './Conversation/ConversationList';
+import Conversation from './Conversation/Conversation';
+import '../../styles/Messenger/Messenger.css';
 
 const Messenger = () => {
     const [openConversationId, setOpenConversationId] = useState(0);

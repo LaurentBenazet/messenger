@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/ConversationHeader.css';
+import '../../../styles/Messenger/Conversation/ConversationHeader.css';
 
 const ConversationHeader = (props) => {
     const {participants} = props;

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/ConversationPreview.css';
+import '../../../styles/Messenger/Conversation/ConversationPreview.css';
 
 const ConversationPreview = (props) => {
     const {conversation, selectConversation} = props;

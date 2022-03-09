@@ -4,13 +4,13 @@
 
 .left-column {
     width: 25%;
-    height: 100vh;
+    height: 96vh;
     overflow: auto;
     border-right: 1px solid gray;
 }
 
 .right-column {
     width: 75%;
-    height: 100vh;
-    overflow: auto;
+    height: 96vh;
+    overflow: hidden;
 }

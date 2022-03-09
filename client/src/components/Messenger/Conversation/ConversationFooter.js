@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/ConversationFooter.css';
+import '../../../styles/Messenger/Conversation/ConversationFooter.css';
 import {TextField} from "@material-ui/core";
 
 const ConversationFooter = () => {
