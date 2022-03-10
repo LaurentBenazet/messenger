@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ConversationList from './Conversation/ConversationList';
 import Conversation from './Conversation/Conversation';
+import CreateConversation from "./Conversation/CreateConversation";
 import '../../styles/Messenger/Messenger.css';
 
 const Messenger = () => {
@@ -13,6 +14,7 @@ const Messenger = () => {
     return (
         <div className="main-container">
             <div className="left-column">
+                <CreateConversation/>
                 <ConversationList selectConversation={selectConversation.bind(this)}/>
             </div>
             <div className="right-column">

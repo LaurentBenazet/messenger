@@ -40,7 +40,7 @@ const Conversation = (props) => {
 
     return (
         <div>
-            {data ? (
+            {data && (
                     <div>
                         <>
                             <ConversationHeader participants={data.getSingleConversation.participants}/>
@@ -55,9 +55,7 @@ const Conversation = (props) => {
 
                         <ConversationFooter conversationId={conversationId}/>
                     </div>
-                ) :
-                <h1 className="conversation-placeholder">No conversation is open, you can open one by clicking a button
-                    in the left column</h1>
+                )
             }
         </div>
     );
