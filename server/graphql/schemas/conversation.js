@@ -17,6 +17,10 @@ extend type Query {
  extend type Mutation {
      createConversation(usersId:[Int!]!): CreateConversationResponse
  }
+ 
+ extend type Subscription {
+     conversationAdded(userId:Int!): Conversation
+ }
 
  type CreateConversationResponse {
     id: Int!

@@ -1,6 +1,8 @@
 const {Conversation, User} = require('../../database/models');
-
 const {AuthenticationError, ForbiddenError} = require('apollo-server-express');
+const {withFilter, PubSub} = require("graphql-subscriptions");
+
+const pubsub = new PubSub();
 
 module.exports = {
     Mutation: {
@@ -12,9 +14,15 @@ module.exports = {
                 throw new ForbiddenError('A conversation must contain at least two users');
             }
 
+            if(!(user.id in usersId)) {
+                usersId.push(user.id);
+            }
+
             const conversation = await Conversation.create();
 
             conversation.addParticipants(usersId);
+
+            await pubsub.publish('conversationAdded', conversation);
 
             return conversation;
         },
@@ -22,7 +30,7 @@ module.exports = {
 
     Query: {
         async getAllConversations(root, args, context) {
-            return context.user.getConversations();
+            return context.user.getConversations({order: [['createdAt', 'DESC']]});
         },
         async getSingleConversation(_, {conversationId}, context) {
             return Conversation.findByPk(conversationId, {
@@ -43,4 +51,19 @@ module.exports = {
             return conversation.getParticipants();
         }
     },
+
+    Subscription: {
+        conversationAdded: {
+            subscribe: withFilter(() => pubsub.asyncIterator('conversationAdded'), async (payload, variables) => {
+                console.log(payload.dataValues.id)
+                const conversation = await Conversation.findByPk(payload.dataValues.id);
+                const participants = await conversation.getParticipants();
+
+                return participants.some(participant => participant.dataValues.id === variables.userId);
+            }),
+            resolve: (payload) => {
+                return payload;
+            },
+        }
+    }
 };
