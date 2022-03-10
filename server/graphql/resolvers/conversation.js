@@ -55,7 +55,6 @@ module.exports = {
     Subscription: {
         conversationAdded: {
             subscribe: withFilter(() => pubsub.asyncIterator('conversationAdded'), async (payload, variables) => {
-                console.log(payload.dataValues.id)
                 const conversation = await Conversation.findByPk(payload.dataValues.id);
                 const participants = await conversation.getParticipants();
 

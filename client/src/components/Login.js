@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import "../styles/Login.css"
 import {gql, useMutation} from '@apollo/client';
 import {useNavigate} from 'react-router-dom';
-import {AUTH_TOKEN, CURRENT_LOGGED_USER_ID} from "../constants";
+import {AUTH_TOKEN, CURRENT_LOGGED_USER_ID, CURRENT_LOGGED_USER_NAME} from "../constants";
 
 const SIGNUP_MUTATION = gql`
   mutation register($input: RegisterInput!) {
@@ -46,6 +46,7 @@ const Login = () => {
         onCompleted: ({login}) => {
             localStorage.setItem(AUTH_TOKEN, login.token);
             localStorage.setItem(CURRENT_LOGGED_USER_ID, login.id);
+            localStorage.setItem(CURRENT_LOGGED_USER_NAME, login.name);
             navigate('/messenger');
         }
     });
@@ -61,6 +62,7 @@ const Login = () => {
         onCompleted: ({register}) => {
             localStorage.setItem(AUTH_TOKEN, register.token);
             localStorage.setItem(CURRENT_LOGGED_USER_ID, register.id);
+            localStorage.setItem(CURRENT_LOGGED_USER_NAME, register.name);
             navigate('/messenger');
         }
     });

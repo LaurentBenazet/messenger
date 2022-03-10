@@ -11,6 +11,7 @@ const CONVERSATION_QUERY = gql`
   getSingleConversation(conversationId: $conversationId) {
     id
     participants {
+      id
       name
     }
     messages {
@@ -21,41 +22,76 @@ const CONVERSATION_QUERY = gql`
         name
       }
       createdAt
-      conversation {
-        id
-      }
     }
   }
 }
 `
 
+const MESSAGE_ADDED = gql`
+  subscription MessageAdded($userId: Int!) {
+  messageAdded(userId: $userId) {
+    id
+    content
+    author {
+      id
+      name
+    }
+    conversation {
+      id
+    }
+    createdAt
+  }
+}
+`;
+
 const Conversation = (props) => {
     const {conversationId} = props;
 
-    const {data} = useQuery(CONVERSATION_QUERY, {
+    const {data, subscribeToMore} = useQuery(CONVERSATION_QUERY, {
         variables: {
-            conversationId: conversationId
+            conversationId: conversationId,
+            userId: parseInt(localStorage.getItem(CURRENT_LOGGED_USER_ID))
+        }
+    });
+
+    subscribeToMore({
+        document: MESSAGE_ADDED,
+        variables: {
+            userId: parseInt(localStorage.getItem(CURRENT_LOGGED_USER_ID))
+        },
+        updateQuery: (prev, {subscriptionData}) => {
+            if (!subscriptionData.data) return prev;
+            const messageAdded = subscriptionData.data.messageAdded;
+            const exists = prev.getSingleConversation.messages.find(
+                ({id}) => id === messageAdded.id
+            );
+            if (exists) return prev;
+
+            return Object.assign({}, prev, {
+                getSingleConversation: {messages: [...prev.getSingleConversation.messages, messageAdded]},
+            });
         }
     });
 
     return (
         <div>
             {data && (
-                    <div>
-                        <>
-                            <ConversationHeader participants={data.getSingleConversation.participants}/>
+                <div>
+                    <>
+                        <ConversationHeader participants={data.getSingleConversation.participants}/>
 
-                            <div className="conversation-content">
-                                {data.getSingleConversation.messages.map((message) => (
-                                    <Message mine={String(message.author.id) === localStorage.getItem(CURRENT_LOGGED_USER_ID)}
-                                             key={message.id} message={message}/>
-                                ))}
-                            </div>
-                        </>
+                        <div className="conversation-content">
+                            {data.getSingleConversation.messages.map((message) => (
+                                <Message
+                                    mine={String(message.author.id) === localStorage.getItem(CURRENT_LOGGED_USER_ID)}
+                                    key={message.id} message={message}/>
+                            ))}
+                        </div>
+                    </>
 
-                        <ConversationFooter conversationId={conversationId}/>
-                    </div>
-                )
+                    <ConversationFooter conversationId={conversationId}/>
+                </div>
+            )
             }
         </div>
     );
