@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import {AUTH_TOKEN} from '../constants';
+import {AUTH_TOKEN, CURRENT_LOGGED_USER_ID} from '../constants';
 
 import("../styles/Header.css")
 
@@ -24,6 +24,7 @@ const Header = () => {
                         className="link"
                         onClick={() => {
                             localStorage.removeItem(AUTH_TOKEN);
+                            localStorage.removeItem(CURRENT_LOGGED_USER_ID);
                             navigate(`/`);
                         }}
                     >

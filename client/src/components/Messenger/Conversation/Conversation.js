@@ -4,6 +4,7 @@ import Message from '../Message';
 import ConversationFooter from "./ConversationFooter";
 import ConversationHeader from "./ConversationHeader";
 import '../../../styles/Messenger/Conversation/Conversation.css';
+import {CURRENT_LOGGED_USER_ID} from "../../../constants";
 
 const CONVERSATION_QUERY = gql`
   query GetSingleConversation($conversationId: Int!) {
@@ -40,21 +41,23 @@ const Conversation = (props) => {
     return (
         <div>
             {data ? (
-                <div>
-                    <>
-                        <ConversationHeader participants={data.getSingleConversation.participants}/>
+                    <div>
+                        <>
+                            <ConversationHeader participants={data.getSingleConversation.participants}/>
 
-                        <div className="conversation-content">
-                            {data.getSingleConversation.messages.map((message) => (
-                                <Message key={message.id} message={message}/>
-                            ))}
-                        </div>
-                    </>
+                            <div className="conversation-content">
+                                {data.getSingleConversation.messages.map((message) => (
+                                    <Message mine={String(message.author.id) === localStorage.getItem(CURRENT_LOGGED_USER_ID)}
+                                             key={message.id} message={message}/>
+                                ))}
+                            </div>
+                        </>
 
-                    <ConversationFooter/>
-                </div>
-            ) :
-                <h1 className="conversation-placeholder">No conversation is open, you can open one by clicking a button in the left column</h1>
+                        <ConversationFooter conversationId={conversationId}/>
+                    </div>
+                ) :
+                <h1 className="conversation-placeholder">No conversation is open, you can open one by clicking a button
+                    in the left column</h1>
             }
         </div>
     );

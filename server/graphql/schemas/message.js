@@ -11,7 +11,7 @@ module.exports = gql`
  }
 
  extend type Mutation {
-     createMessage(content: String!, conversationId: Int!, userId: Int!): CreateMessageResponse
+     createMessage(content: String!, conversationId: Int!): CreateMessageResponse
  }
 
  extend type Subscription {

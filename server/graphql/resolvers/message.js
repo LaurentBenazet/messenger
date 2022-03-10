@@ -1,15 +1,20 @@
 const {Conversation} = require('../../database/models');
-const {ApolloError} = require('apollo-server-express');
+const {ApolloError, AuthenticationError} = require('apollo-server-express');
 const {PubSub, withFilter} = require('graphql-subscriptions');
 
 const pubsub = new PubSub();
 
 module.exports = {
     Mutation: {
-        async createMessage(_, {content, conversationId, userId}) {
+        async createMessage(_, {content, conversationId},{user = null}) {
+            if (!user) {
+                throw new AuthenticationError('You must login to write a message');
+            }
+
             const conversation = await Conversation.findByPk(conversationId);
 
             if (conversation) {
+                const userId = user.id;
                 const message = await conversation.createMessage({content, conversationId, userId});
 
                 await pubsub.publish('messageAdded', message);
