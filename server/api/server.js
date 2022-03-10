@@ -17,12 +17,6 @@ const apolloServer = new ApolloServer({
     subscriptions: {
         path: '/subscriptions'
     },
-    playground: {
-        settings: {
-            endpoint: '/subscriptions',
-            'schema.polling.enable': false,
-        },
-    },
 });
 
 apolloServer.start().then(res => {

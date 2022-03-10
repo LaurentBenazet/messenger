@@ -39,19 +39,23 @@ const Conversation = (props) => {
 
     return (
         <div>
-            {data && (
-                <>
-                    <ConversationHeader participants={data.getSingleConversation.participants}/>
+            {data ? (
+                <div>
+                    <>
+                        <ConversationHeader participants={data.getSingleConversation.participants}/>
 
-                    <div className="conversation-content">
-                        {data.getSingleConversation.messages.map((message) => (
-                            <Message key={message.id} message={message}/>
-                        ))}
-                    </div>
-                </>
-            )}
+                        <div className="conversation-content">
+                            {data.getSingleConversation.messages.map((message) => (
+                                <Message key={message.id} message={message}/>
+                            ))}
+                        </div>
+                    </>
 
-            <ConversationFooter/>
+                    <ConversationFooter/>
+                </div>
+            ) :
+                <h1 className="conversation-placeholder">No conversation is open, you can open one by clicking a button in the left column</h1>
+            }
         </div>
     );
 };

@@ -4,15 +4,15 @@ import ConversationPreview from './ConversationPreview';
 import {gql, useQuery} from '@apollo/client';
 
 const CONVERSATIONS_QUERY = gql`
-  {
-    getAllConversations {
+  query allConversations {
+  getAllConversations {
     id
     participants {
       id
       name
     }
   }
-  }
+}
 `
 
 const ConversationList = (props) => {

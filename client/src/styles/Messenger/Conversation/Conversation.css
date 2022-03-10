@@ -2,3 +2,8 @@
     height: 86vh;
     overflow: auto;
 }
+
+.conversation-placeholder {
+    width: fit-content;
+    margin: auto;
+}

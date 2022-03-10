@@ -24,6 +24,7 @@ extend type Query {
     id: Int!
     name: String!
     email: String!
+    token: String!
  }
 
  input RegisterInput {

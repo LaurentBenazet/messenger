@@ -1,0 +1,9 @@
+.login {
+    margin: auto;
+    width: fit-content;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+}

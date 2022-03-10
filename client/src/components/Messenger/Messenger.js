@@ -7,7 +7,6 @@ const Messenger = () => {
     const [openConversationId, setOpenConversationId] = useState(0);
 
     function selectConversation(conversationId) {
-        console.log(conversationId);
         setOpenConversationId(conversationId);
     }
 

@@ -8,7 +8,13 @@ module.exports = {
     Mutation: {
         async register(root, args, context) {
             const { name, email, password } = args.input;
-            return User.create({ name, email, password });
+            const user = await User.create({ name, email, password });
+
+            if (user && bcrypt.compareSync(password, user.password)) {
+                const token = jwt.sign({ id: user.id }, 'mySecret');
+                return { ...user.toJSON(), token };
+            }
+            throw new AuthenticationError('Invalid credentials');
         },
 
         async login(root, { input }, context) {
