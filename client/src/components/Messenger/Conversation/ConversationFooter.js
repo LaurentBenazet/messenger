@@ -41,7 +41,7 @@ const ConversationFooter = (props) => {
                            setConversationState({content: e.target.value})
                        }}
                        onKeyPress={(e) => {
-                           if (e.key === 'Enter') {
+                           if (e.key === 'Enter' && conversationState.content) {
                                sendMessageMutation();
                                clear();
                            }
