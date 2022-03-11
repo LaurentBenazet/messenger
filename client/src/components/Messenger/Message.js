@@ -1,15 +1,21 @@
 import React from "react";
-import {Chip} from "@material-ui/core";
 import moment from "moment";
+import Chip from "./Reusable/Chip";
 
 const Message = (props) => {
-    const {message, mine} = props;
+    const {message, mine, primaryColor='#3f51b5', secondaryColor='#f50057'} = props;
 
     return (
-        <div style={{textAlign: mine?"right":"left", marginRight: mine ? "10px" : "0", marginLeft: mine ? "0" : "10px"}}>
-            <p style={{marginBottom:"0.3rem"}}>{moment(message.createdAt, "x").format('HH:mm')} {message.author.name}</p>
-            <Chip style={{fontSize:"0.9rem"}} color={mine?"primary": "secondary"} label={message.content}/>
+        <div className="message" style={{
+            textAlign: mine ? "right" : "left",
+            marginRight: mine ? "10px" : "0",
+            marginLeft: mine ? "0" : "10px"
+        }}>
+            <p className="message-date"
+               style={{marginBottom: "0.3rem"}}>{moment(message.createdAt, "x").format('HH:mm')} {message.author.name}</p>
+            <Chip text={message.content} backgroundColor={mine ? primaryColor : secondaryColor} textColor="white"/>
         </div>
+
     );
 };
 

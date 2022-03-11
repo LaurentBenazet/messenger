@@ -1,4 +1,11 @@
+.conversation {
+
+}
+
 .conversation-content {
     height: 86vh;
     overflow: auto;
+
+    display: flex;
+    flex-direction: column;
 }

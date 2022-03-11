@@ -74,23 +74,23 @@ const Conversation = (props) => {
     });
 
     return (
-        <div>
+        <div className="conversation">
             {data && (
-                <div>
-                    <>
-                        <ConversationHeader participants={data.getSingleConversation.participants}/>
+                <>
+                    <ConversationHeader participants={data.getSingleConversation.participants}/>
 
-                        <div className="conversation-content">
-                            {data.getSingleConversation.messages.map((message) => (
-                                <Message
-                                    mine={String(message.author.id) === localStorage.getItem(CURRENT_LOGGED_USER_ID)}
-                                    key={message.id} message={message}/>
-                            ))}
-                        </div>
-                    </>
+                    <div className="conversation-content">
+                        {data.getSingleConversation.messages.map((message) => (
+                            <Message
+                                primaryColor={data.getSingleConversation.primaryColor}
+                                secondaryColor={data.getSingleConversation.secondaryColor}
+                                mine={String(message.author.id) === localStorage.getItem(CURRENT_LOGGED_USER_ID)}
+                                key={message.id} message={message}/>
+                        ))}
+                    </div>
 
                     <ConversationFooter conversationId={conversationId}/>
-                </div>
+                </>
             )
             }
         </div>

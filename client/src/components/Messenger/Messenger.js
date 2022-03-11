@@ -12,7 +12,7 @@ const Messenger = () => {
     }
 
     return (
-        <div className="main-container">
+        <div className="messenger">
             <div className="left-column">
                 <CreateConversation/>
                 <ConversationList selectConversation={selectConversation.bind(this)}/>

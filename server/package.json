@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@graphql-tools/schema": "^8.3.2",
+    "@sequelize/core": "^7.0.0-alpha.10",
     "apollo-server": "^3.6.3",
     "apollo-server-express": "^3.6.3",
     "bcryptjs": "^2.4.3",

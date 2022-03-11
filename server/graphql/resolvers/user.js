@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const { AuthenticationError } = require('apollo-server-express');
 
 const { User } = require('../../database/models');
+const { Op } = require('@sequelize/core');
 
 module.exports = {
     Mutation: {
@@ -30,7 +31,13 @@ module.exports = {
 
     Query: {
         async getAllUsers(root, args, context) {
-            return User.findAll();
+            return User.findAll({
+                where: {
+                    id: {
+                        [Op.ne] : context.user.id
+                    }
+                }
+            });
         },
         async getSingleUser(_, { userId }, context) {
             return User.findByPk(userId);

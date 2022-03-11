@@ -1,11 +1,10 @@
 import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {AUTH_TOKEN, CURRENT_LOGGED_USER_ID, CURRENT_LOGGED_USER_NAME} from '../constants';
 
 import("../styles/Header.css")
 
 const Header = () => {
-    const navigate = useNavigate();
     const authToken = localStorage.getItem(AUTH_TOKEN);
     const currentLoggerUserName = localStorage.getItem(CURRENT_LOGGED_USER_NAME);
 
@@ -24,19 +23,20 @@ const Header = () => {
 
             <div className="link">
                 {authToken ? (
-                    <div
+                    <Link
+                        to="/"
                         className="link"
                         onClick={() => {
                             localStorage.removeItem(AUTH_TOKEN);
                             localStorage.removeItem(CURRENT_LOGGED_USER_ID);
                             localStorage.removeItem(CURRENT_LOGGED_USER_NAME);
-                            navigate(`/`);
                         }}
                     >
                         Logout
-                    </div>
+                    </Link>
                 ) : (
                     <Link
+                        className="link"
                         to="/login"
                     >
                         Login/Sign up
