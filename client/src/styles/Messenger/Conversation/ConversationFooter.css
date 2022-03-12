@@ -9,5 +9,18 @@
 
 .conversation-text-input {
     width: 100%;
-    background-color: rgb(243,243,245);
+    background-color: rgb(243, 243, 245);
+}
+
+.emoji-picker {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+}
+
+.get-emoji-button {
+    border: none;
+    margin: 0;
+    cursor: pointer;
+    z-index: 500;
 }

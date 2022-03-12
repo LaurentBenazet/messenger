@@ -15,7 +15,6 @@ const CREATE_CONVERSATION = gql`
   mutation createConversation($usersId:[Int!]!) {
    createConversation(usersId: $usersId) {
     id
-    createdAt
   }
 }
 `;
