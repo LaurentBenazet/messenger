@@ -6,7 +6,7 @@ const ConversationPreview = (props) => {
     const {conversation, selectConversation} = props;
     return (
         <>
-            {conversation.participants.length > 0 && (
+            {conversation.participants && conversation.participants.length > 0 && (
                 <div onClick={() => selectConversation(conversation.id)} className="conversation-preview">
                     <Chip closeable={true} initial={conversation.participants[0].name.charAt(0).toUpperCase()}
                           text={conversation.participants.map(function (participant) {
