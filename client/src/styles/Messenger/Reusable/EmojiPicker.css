@@ -1,0 +1,11 @@
+.emoji-picker {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+}
+
+.get-emoji-button {
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
