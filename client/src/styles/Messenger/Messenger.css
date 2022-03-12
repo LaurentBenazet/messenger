@@ -3,14 +3,14 @@
 }
 
 .left-column {
-    width: 25%;
+    width: 20%;
     height: 96vh;
     overflow: auto;
     border-right: 1px solid gray;
 }
 
 .right-column {
-    width: 75%;
+    width: 80%;
     height: 96vh;
     overflow: hidden;
 }

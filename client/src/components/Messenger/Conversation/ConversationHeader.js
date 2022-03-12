@@ -8,7 +8,7 @@ const ConversationHeader = (props) => {
         <div className="conversation-header">
             {
                 participants && (
-                    <span className="conversation-participants">Conversation with {participants.map(function(participant) {
+                    <span className="conversation-participants">{participants.map(function(participant) {
                         return participant.name;
                     }).join(',')}</span>
 

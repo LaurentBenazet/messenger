@@ -28,7 +28,8 @@ const ConversationFooter = (props) => {
 
     useEffect(() => {
         const closeMenu = (e) => {
-            if (e.type === "keydown" && e.key === 'Escape' && showEmojisMenu || e.type === "click" && ref.current && !ref.current.contains(e.target) && showEmojisMenu) {
+            // close the emoji picker menu when we press the escape key or when we click outside the emoji picker
+            if ((e.type === "keydown" && e.key === 'Escape' && showEmojisMenu) || (e.type === "click" && ref.current && !ref.current.contains(e.target) && showEmojisMenu)) {
                 setShowEmojisMenu(false);
             }
         }

@@ -14,9 +14,7 @@ module.exports = {
                 throw new ForbiddenError('A conversation must contain at least two users');
             }
 
-            if(!(user.id in usersId)) {
-                usersId.push(user.id);
-            }
+            usersId.push(user.id);
 
             const conversation = await Conversation.create();
 

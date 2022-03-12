@@ -3,17 +3,17 @@ import '../../../styles/Messenger/Reusable/Chip.css';
 
 // source : https://codepen.io/debabrata100/pen/pOLyPW for the base component
 const Chip = (props) => {
-    const {text, textColor, backgroundColor, icon = false, closeable = false} = props;
+    const {text, textColor, backgroundColor, initial = "", closeFunction = false} = props;
 
     return (
         <div className="chip" style={backgroundColor && {backgroundColor: backgroundColor}}>
-            {icon &&
-                <div className="chip-head">C</div>
+            {initial &&
+                <div className="chip-head">{initial}</div>
             }
             <div className="chip-content" style={textColor && {color: textColor}}>
                 {text}
             </div>
-            {closeable &&
+            {closeFunction &&
                 <div className="chip-close">
                     <svg className="chip-svg" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                         <path
