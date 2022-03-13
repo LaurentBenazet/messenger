@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "../styles/Login.css"
 import {gql, useMutation} from '@apollo/client';
 import {useNavigate} from 'react-router-dom';
@@ -50,6 +50,20 @@ const Login = () => {
             navigate('/messenger');
         }
     });
+
+    useEffect(() => {
+        const submitLogin = (e) => {
+            if (e.key === 'Enter') {
+                formState.login ? loginMutation() : signupMutation();
+            }
+        }
+
+        document.addEventListener('keydown', submitLogin);
+        return () => {
+            document.removeEventListener('keydown', submitLogin);
+        }
+    })
+
 
     const [signupMutation] = useMutation(SIGNUP_MUTATION, {
         variables: {
