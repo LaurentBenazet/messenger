@@ -1,13 +1,21 @@
 .conversation-footer {
     height: 5vh;
     width: 90%;
-    margin: auto;
+    padding-left: 5%;
+    padding-right: 5%;
 
     display: flex;
     align-items: center;
+
+    position: relative;
 }
 
 .conversation-text-input {
     width: 100%;
     background-color: rgb(243, 243, 245);
+}
+
+.conversation-footer .emoji-picker {
+    right: 0;
+    bottom: 10px;
 }

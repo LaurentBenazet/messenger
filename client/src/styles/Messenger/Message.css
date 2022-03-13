@@ -1,12 +1,45 @@
 .message {
+}
 
+.my-message {
+    text-align: right;
+}
+
+.my-message .chip {
+    background-color: #3f51b5;
+}
+
+.their-message {
+    text-align: left;
+}
+
+.their-message .chip {
+    background-color: #f50057;
 }
 
 .message-date {
     margin-left: 15px;
     margin-right: 15px;
+
+    margin-bottom: 0.3rem;
 }
 
 .message-content {
+    color: white;
+}
 
+.message-reactions {
+    position: relative;
+    top: -20px;
+    width: 100px;
+}
+
+.my-message-reactions {
+    margin-right: auto;
+    direction: rtl;
+}
+
+.their-message-reactions {
+    margin-left: auto;
+    direction: ltr;
 }

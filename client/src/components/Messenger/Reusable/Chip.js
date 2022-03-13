@@ -3,14 +3,14 @@ import '../../../styles/Messenger/Reusable/Chip.css';
 
 // source : https://codepen.io/debabrata100/pen/pOLyPW for the base component
 const Chip = (props) => {
-    const {text, textColor, backgroundColor, initial = "", closeFunction = false} = props;
+    const {text, initial = "", closeFunction = false} = props;
 
     return (
-        <div className="chip" style={backgroundColor && {backgroundColor: backgroundColor}}>
+        <div className="chip">
             {initial &&
                 <div className="chip-head">{initial}</div>
             }
-            <div className="chip-content" style={textColor && {color: textColor}}>
+            <div className="chip-content">
                 {text}
             </div>
             {closeFunction &&

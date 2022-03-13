@@ -31,21 +31,20 @@ const EmojiPicker = (props) => {
 
     return (
         <>
-            {
-                showEmojisMenu ? (
-                    <span className="emoji-picker" ref={ref}>
+            {showEmojisMenu && (
+                <span className="emoji-picker" ref={ref}>
             <Picker
                 onSelect={addEmoji}
                 emojiTooltip={true}
                 title="Messenger"
             />
-          </span>
-                ) : (
-                    <p className="get-emoji-button" onClick={openEmojisMenu}>
-                        {String.fromCodePoint(0x1f60a)}
-                    </p>
-                )
-            }
+          </span>)}
+
+            <p className="get-emoji-button" onClick={openEmojisMenu}>
+                {String.fromCodePoint(0x1f60a)}
+            </p>
+
+
         </>
     )
 }

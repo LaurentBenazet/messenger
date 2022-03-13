@@ -82,8 +82,6 @@ const Conversation = (props) => {
                     <div className="conversation-content">
                         {data.getSingleConversation.messages.map((message) => (
                             <Message
-                                primaryColor={data.getSingleConversation.primaryColor}
-                                secondaryColor={data.getSingleConversation.secondaryColor}
                                 mine={String(message.author.id) === localStorage.getItem(CURRENT_LOGGED_USER_ID)}
                                 key={message.id} message={message}/>
                         ))}
