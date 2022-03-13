@@ -16,7 +16,7 @@ const ConversationFooter = (props) => {
     }
 
     const addEmoji = (e) => {
-        let emoji = e.native;
+        const emoji = e.native;
         setContent(content + emoji);
     };
 
