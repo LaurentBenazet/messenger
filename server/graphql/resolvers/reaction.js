@@ -93,28 +93,24 @@ module.exports = {
     Subscription: {
         reactionAdded: {
             subscribe: withFilter(() => pubsub.asyncIterator('reactionAdded'), async (payload, variables) => {
-                console.log(payload)
                 const message = await Message.findByPk(payload.dataValues.messageId);
                 const conversation = await Conversation.findByPk(message.dataValues.conversationId);
 
                 return conversation.dataValues.id === variables.conversationId;
             }),
             resolve: (payload) => {
-                console.log(payload)
                 return payload;
             },
         },
 
         reactionRemoved: {
             subscribe: withFilter(() => pubsub.asyncIterator('reactionRemoved'), async (payload, variables) => {
-                console.log(payload)
                 const message = await Message.findByPk(payload.dataValues.messageId);
                 const conversation = await Conversation.findByPk(message.dataValues.conversationId);
 
                 return conversation.dataValues.id === variables.conversationId;
             }),
             resolve: (payload) => {
-                console.log(payload)
                 return payload;
             },
         }

@@ -35,7 +35,7 @@ const Reactions = (props) => {
         if (reaction.userIds.includes(parseInt(currentUserId))) {
             await removeEmoji(reaction.id);
         } else {
-            await addEmoji(e);
+            await addEmoji(e, reaction.emoji);
         }
     }
 
@@ -43,8 +43,8 @@ const Reactions = (props) => {
 
     const [removeReactionMutation] = useMutation(REMOVE_REACTION);
 
-    const addEmoji = async (e) => {
-        const emoji = e.native;
+    const addEmoji = async (e, reactionEmoji) => {
+        const emoji = reactionEmoji ? reactionEmoji : e.native;
 
         await addReactionMutation({
             variables: {
@@ -68,7 +68,7 @@ const Reactions = (props) => {
             <EmojiPicker addEmoji={addEmoji}/>
             {reactions && (
                 <>
-                    {reactions.map((reaction) => (
+                    {reactions.map((reaction) => reaction.userIds.length > 0 && (
                         <button className="reaction" key={reaction.id} onClick={(e) => updateEmoji(e, reaction)}>
                             <span className="emoji">{reaction.emoji}</span>
                             <span className="emoji-count">{reaction.userIds.length}</span>

@@ -38,10 +38,11 @@
 
 .over-half-page .emoji-picker{
     bottom: unset;
+    top: 30px;
 }
 
 .under-half-page .emoji-picker {
-    bottom: 0;
+    bottom: 30px;
 }
 
 .my-message-reactions {
