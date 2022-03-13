@@ -1,5 +1,5 @@
 const {Conversation, User} = require('../../database/models');
-const {AuthenticationError, ForbiddenError} = require('apollo-server-express');
+const {AuthenticationError} = require('apollo-server-express');
 const {withFilter, PubSub} = require("graphql-subscriptions");
 
 const pubsub = new PubSub();
@@ -8,10 +8,7 @@ module.exports = {
     Mutation: {
         async createConversation(_, {usersId}, {user = null}) {
             if (!user) {
-                throw new AuthenticationError('You must login to create a conversation');
-            }
-            if (!usersId || usersId.size < 2) {
-                throw new ForbiddenError('A conversation must contain at least two users');
+                throw new AuthenticationError('You must be logged in to create a conversation');
             }
 
             usersId.push(user.id);
