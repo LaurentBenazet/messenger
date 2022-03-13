@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import moment from "moment";
 import Chip from "./Reusable/Chip";
 import '../../styles/Messenger/Message.css';
-import EmojiPicker from "./Reusable/EmojiPicker";
+import Reactions from "./Reactions";
 
 const Message = (props) => {
     const {message, mine} = props;
@@ -27,7 +27,7 @@ const Message = (props) => {
                 <Chip text={message.content}/>
             </div>
             <div className={`message-reactions ${mine ? "my-message-reactions" : "their-message-reactions"} ${isOverHalfPage ? "over-half-page" : "under-half-page"}`}>
-                <EmojiPicker/>
+                <Reactions messageId={message.id} reactions={message.reactions}/>
             </div>
         </div>
 

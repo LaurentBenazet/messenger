@@ -1,0 +1,21 @@
+.reactions {
+    display: flex;
+}
+
+.reaction {
+    direction: ltr;
+    background-color: red;
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.emoji {
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.emoji-count {
+
+}

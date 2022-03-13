@@ -22,6 +22,11 @@ const CONVERSATION_QUERY = gql`
         name
       }
       createdAt
+      reactions {
+        id
+        emoji
+        userIds
+      }
     }
   }
 }

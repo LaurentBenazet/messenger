@@ -79,7 +79,7 @@ module.exports = {
 
     Reaction: {
         userIds(reaction) {
-            return reaction.getUserIds();
+            return reaction.dataValues.userIds;
         },
     }
 };
