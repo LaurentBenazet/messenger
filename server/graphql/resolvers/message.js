@@ -32,6 +32,9 @@ module.exports = {
         conversation(message) {
             return message.getConversation();
         },
+        reactions(message) {
+            return message.getReactions();
+        }
     },
 
     Subscription: {

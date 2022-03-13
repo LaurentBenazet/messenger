@@ -7,6 +7,7 @@ module.exports = gql`
      content: String!
      author: User!
      conversation: Conversation!
+     reactions: [Reaction!]
      createdAt: String
  }
 
