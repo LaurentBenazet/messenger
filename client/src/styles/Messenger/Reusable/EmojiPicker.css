@@ -1,6 +1,7 @@
 .emoji-picker {
     position: absolute;
     text-align: left;
+    z-index: 10;
 }
 
 .get-emoji-button {

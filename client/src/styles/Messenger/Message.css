@@ -1,4 +1,5 @@
 .message {
+    position: relative;
 }
 
 .my-message {
@@ -34,12 +35,20 @@
     width: 100px;
 }
 
+.over-half-page .emoji-picker{
+    bottom: unset;
+}
+
+.under-half-page .emoji-picker {
+    bottom: 0;
+}
+
 .my-message-reactions {
-    margin-right: auto;
+    margin-left: auto;
     direction: rtl;
 }
 
 .their-message-reactions {
-    margin-left: auto;
+    margin-right: auto;
     direction: ltr;
 }
