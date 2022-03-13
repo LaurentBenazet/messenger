@@ -6,13 +6,18 @@ module.exports = gql`
      id: Int!
      emoji: String!
      userIds: [Int!]
-     message: Message!
+     messageId: Int!
      createdAt: String
  }
 
  extend type Mutation {
      addReaction(emoji: String!, messageId: Int!): UpdateReactionResponse
      removeReaction(reactionId: Int!): UpdateReactionResponse
+ }
+ 
+ extend type Subscription {
+     reactionAdded(conversationId: Int!): Reaction
+     reactionRemoved(conversationId: Int!): Reaction
  }
 
  type UpdateReactionResponse {

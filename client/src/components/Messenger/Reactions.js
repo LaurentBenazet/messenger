@@ -65,6 +65,7 @@ const Reactions = (props) => {
 
     return (
         <div className="reactions">
+            <EmojiPicker addEmoji={addEmoji}/>
             {reactions && (
                 <>
                     {reactions.map((reaction) => (
@@ -76,7 +77,6 @@ const Reactions = (props) => {
                 </>
             )
             }
-            <EmojiPicker addEmoji={addEmoji}/>
         </div>
 
     );

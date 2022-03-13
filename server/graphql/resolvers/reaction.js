@@ -1,4 +1,4 @@
-const {Message, Reaction} = require('../../database/models');
+const {Message, Reaction, Conversation} = require('../../database/models');
 const {ApolloError, AuthenticationError} = require('apollo-server-express');
 const {PubSub, withFilter} = require('graphql-subscriptions');
 
@@ -27,10 +27,16 @@ module.exports = {
                                 id: reaction.dataValues.id
                             }
                         })
+
+                        await pubsub.publish('reactionAdded', reaction);
                     }
+
                     return reaction;
                 } else {
-                    return message.createReaction({emoji, messageId, userIds: [userId]});
+                    reaction = await message.createReaction({emoji, messageId, userIds: [userId]});
+                    await pubsub.publish('reactionAdded', reaction);
+
+                    return reaction
                 }
             }
 
@@ -53,7 +59,7 @@ module.exports = {
 
                 if (index > -1) {
                     userIds.splice(index, 1);
-                    if (userIds.length === 1) {
+                    if (userIds.length === 0) {
                         await Reaction.destroy({
                             where: {
                                 id: reaction.dataValues.id
@@ -66,6 +72,7 @@ module.exports = {
                             }
                         })
                     }
+                    await pubsub.publish('reactionRemoved', reaction);
 
                     return reaction;
                 } else {
@@ -81,5 +88,35 @@ module.exports = {
         userIds(reaction) {
             return reaction.dataValues.userIds;
         },
+    },
+
+    Subscription: {
+        reactionAdded: {
+            subscribe: withFilter(() => pubsub.asyncIterator('reactionAdded'), async (payload, variables) => {
+                console.log(payload)
+                const message = await Message.findByPk(payload.dataValues.messageId);
+                const conversation = await Conversation.findByPk(message.dataValues.conversationId);
+
+                return conversation.dataValues.id === variables.conversationId;
+            }),
+            resolve: (payload) => {
+                console.log(payload)
+                return payload;
+            },
+        },
+
+        reactionRemoved: {
+            subscribe: withFilter(() => pubsub.asyncIterator('reactionRemoved'), async (payload, variables) => {
+                console.log(payload)
+                const message = await Message.findByPk(payload.dataValues.messageId);
+                const conversation = await Conversation.findByPk(message.dataValues.conversationId);
+
+                return conversation.dataValues.id === variables.conversationId;
+            }),
+            resolve: (payload) => {
+                console.log(payload)
+                return payload;
+            },
+        }
     }
 };

@@ -46,12 +46,12 @@
 
 .my-message-reactions {
     margin-left: auto;
-    direction: ltr;
+    direction: rtl;
 }
 
 .their-message-reactions {
     margin-right: auto;
-    direction: rtl;
+    direction: ltr;
 }
 
 .my-message-reactions .emoji-picker{
