@@ -5,17 +5,14 @@ Welcome to this instant messaging app !
 ## Run project
 ### Server
 
-In the server directory, run :
-### `npm run dev`
-to run the server in development mode.\
+In the server directory, run `sequelize db:migrate` to initialize the database tables.
+Then run `npm run dev` to run the server in development mode.\
 Open [http://localhost:8080/api](http://localhost:8080/api) to open the graphql playground.\
 
-For it to work correctly, you need to have a postgres server running on localhost/5432 named postgres, with user "postgres" and password "postgres"
+For it to work correctly, you need to have a postgres server running on localhost:5432 named postgres, with user "postgres" and password "postgres"
 
 ### Client
-In the client directory, run:
-### `npm start`
-to run the app in the development mode.
+In the client directory, run `npm start` to run the app in the development mode.
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
