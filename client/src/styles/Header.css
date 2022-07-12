@@ -1,12 +1,11 @@
 .header {
     display: flex;
     align-items: center;
-    top: 0;
 
-    height: 2.5vh;
+    height: 3vh;
     justify-content: right;
 
-    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    border-bottom: 1px solid gray;
 }
 
 .link {
@@ -15,5 +14,6 @@
 }
 
 .header-current-user {
-    margin: auto;
+    margin-right: auto;
+    margin-left: 1rem;
 }

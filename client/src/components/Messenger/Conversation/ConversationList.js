@@ -1,5 +1,6 @@
 import React from 'react';
 import ConversationPreview from './ConversationPreview';
+import '../../../styles/Messenger/Conversation/ConversationList.css';
 
 import {gql, useQuery} from '@apollo/client';
 import {CURRENT_LOGGED_USER_ID} from "../../../constants";
@@ -52,7 +53,7 @@ const ConversationList = (props) => {
     });
 
     return (
-        <div>
+        <div className="conversation-list">
             {data && (
                 <>
                     {data.getAllConversations.map((conversation) => (

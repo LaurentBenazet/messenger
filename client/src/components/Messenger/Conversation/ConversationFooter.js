@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import '../../../styles/Messenger/Conversation/ConversationFooter.css';
-import {TextField} from "@material-ui/core";
 import {gql, useMutation} from "@apollo/client";
 import "emoji-mart/css/emoji-mart.css";
 import EmojiPicker from "../Reusable/EmojiPicker";
@@ -38,16 +37,17 @@ const ConversationFooter = (props) => {
 
     return (
         <div className="conversation-footer">
-            <TextField value={content}
-                       onChange={(e) => {
-                           setContent(e.target.value)
-                       }}
-                       onKeyPress={(e) => {
-                           if (e.key === 'Enter' && content) {
-                               sendMessageMutation();
-                               clear();
-                           }
-                       }} className="conversation-text-input" label="Enter your message here" variant="outlined"/>
+            <input type="text" className="conversation-text-input" placeholder="Enter your message here" value={content}
+                   onChange={(e) => {
+                       setContent(e.target.value)
+                   }}
+                   onKeyPress={(e) => {
+                       if (e.key === 'Enter' && content) {
+                           sendMessageMutation();
+                           clear();
+                       }
+                   }}
+            />
             <EmojiPicker addEmoji={addEmoji}/>
         </div>
     );

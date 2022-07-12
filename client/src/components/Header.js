@@ -11,7 +11,7 @@ const Header = () => {
     return (
         <div className="header">
             {currentLoggerUserName &&
-                <span className="header-current-user">Logged in as {currentLoggerUserName}</span>
+                <span className="header-current-user">Current user : {currentLoggerUserName}</span>
             }
             {authToken &&
                 <Link
