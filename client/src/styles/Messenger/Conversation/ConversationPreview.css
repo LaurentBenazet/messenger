@@ -6,7 +6,6 @@
     width: 100%;
     max-width: 100%;
     height: 50px;
-    border-radius: unset;
 }
 
 .conversation-preview .chip:hover {
@@ -17,4 +16,8 @@
 .conversation-preview .chip-content {
     width: 100%;
     overflow: hidden;
+}
+
+.current-conversation .chip {
+    background-color: rgb(243,243,245);
 }

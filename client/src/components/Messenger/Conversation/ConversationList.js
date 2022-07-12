@@ -30,7 +30,7 @@ const CONVERSATION_ADDED = gql`
 `;
 
 const ConversationList = (props) => {
-    const {selectConversation} = props;
+    const {selectConversation, openConversationId} = props;
     const {data, subscribeToMore} = useQuery(CONVERSATIONS_QUERY);
 
     subscribeToMore({
@@ -58,7 +58,7 @@ const ConversationList = (props) => {
                 <>
                     {data.getAllConversations.map((conversation) => (
                         <ConversationPreview key={conversation.id} conversation={conversation}
-                                             selectConversation={selectConversation}/>
+                                             selectConversation={selectConversation} openConversationId={openConversationId}/>
                     ))}
                 </>
             )}

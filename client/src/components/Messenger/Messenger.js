@@ -15,7 +15,7 @@ const Messenger = () => {
         <div className="messenger">
             <div className="left-column">
                 <CreateConversation/>
-                <ConversationList selectConversation={selectConversation.bind(this)}/>
+                <ConversationList selectConversation={selectConversation.bind(this)} openConversationId={openConversationId}/>
             </div>
             <div className="right-column">
                 {openConversationId !== 0 &&
